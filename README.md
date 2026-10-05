@@ -13,25 +13,23 @@ This is a church LAN app. There is no login. Do not expose it to the internet.
 7. WebUI: `http://[IP]:[PORT:8080]/`
 8. Extra Parameters: `--stop-timeout 600`
 9. Leave Privileged off.
-10. Click Add another Path, Port, Variable, Label or Device once for each row below. Set Config Type, then the two boxes named in that row. Use Read/Write for paths and TCP for the port. Click Add.
+10. Click Add another Path, Port, Variable, Label or Device once for each row below. Set Config Type, then the two boxes named in that row. Use Read/Write for the path and TCP for the port. Click Add.
 11. Click Apply.
 
 Port:
 
 - Config Type Port. Name `WebUI`. Container Port `8080`. Host Port `8080`. Connection Type TCP.
 
-Paths:
+Path. One folder. The app creates `data/`, `media/`, and `secrets/` inside it.
 
-- Config Type Path. Name `App Data`. Container Path `/data`. Host Path `/mnt/user/appdata/sermon-manager/data`. Access Mode Read/Write. The database file is `/data/sermons.db`.
-- Config Type Path. Name `Media`. Container Path `/media`. Host Path `/mnt/user/appdata/sermon-manager/media`. Access Mode Read/Write.
-- Config Type Path. Name `Secrets`. Container Path `/secrets`. Host Path `/mnt/user/appdata/sermon-manager/secrets`. Access Mode Read/Write. YouTube and Spotify JSON files live here, and the path must stay writable.
+- Config Type Path. Name `Sermon Root`. Container Path `/sermons`. Host Path `/mnt/user/appdata/sermon-manager`. Access Mode Read/Write. SQLite is `data/sermons.db`. Uploads are in `media/`. YouTube and Spotify JSON files are in `secrets/`, and that directory must stay writable.
 
 Variables. Key is the variable name. Leave a value blank when the row says empty.
 
 - `WHISPER_HOST`: empty. Optional host of whisper-asr-webservice. Empty leaves the transcript pending. Port defaults to 9000.
 - `LLM_HOST`: empty. Optional host of Ollama. Empty uses an extractive summary. Port defaults to 11434.
-- `YOUTUBE_CLIENT_SECRETS`: `/secrets/youtube_client_secret.json`
-- `YOUTUBE_TOKEN_FILE`: `/secrets/youtube_token.json`
+- `YOUTUBE_CLIENT_SECRETS`: `/sermons/secrets/youtube_client_secret.json`
+- `YOUTUBE_TOKEN_FILE`: `/sermons/secrets/youtube_token.json`
 - `YOUTUBE_PRIVACY_STATUS`: `public`
 - `YOUTUBE_CATEGORY_ID`: `22`
 - `YOUTUBE_PLAYLIST_ID`: empty
@@ -41,7 +39,7 @@ Variables. Key is the variable name. Leave a value blank when the row says empty
 - `FACEBOOK_VIDEO_HOST`: `https://graph-video.facebook.com`
 - `FACEBOOK_GRAPH_HOST`: `https://graph.facebook.com`
 - `FACEBOOK_APP_ID`: empty
-- `SPOTIFY_STORAGE_STATE`: `/secrets/spotify_state.json`
+- `SPOTIFY_STORAGE_STATE`: `/sermons/secrets/spotify_state.json`
 - `SPOTIFY_SHOW_URL`: `https://creators.spotify.com/dash/home`
 - `SPOTIFY_HEADLESS`: `true`
 - `SPOTIFY_UPLOAD_TIMEOUT_MS`: `3600000`
