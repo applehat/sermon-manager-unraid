@@ -9,17 +9,17 @@ This is a church LAN app. There is no login. Do not expose it to the internet.
 3. Turn on Advanced View. WebUI and Extra Parameters are on that view. Name, Repository, and Network Type are already on the form.
 4. Name: `Sermon-Manager`. The Name box accepts only letters, numbers, `.`, `_`, and `-`. `Sermon Manager` (the name in the XML) contains a space and the form will not submit it.
 5. Repository: `ghcr.io/applehat/sermon-manager:latest`
-6. Leave Network Type on Bridge.
-7. WebUI: `http://[IP]:[PORT:8080]/`
+6. Network Type: the custom macvlan or ipvlan network, often `br0`. Not Bridge. Assign the container its own IP on that network.
+7. WebUI: `http://[IP]:80/`
 8. Extra Parameters: `--stop-timeout 600`
 9. Leave Privileged off.
 10. Click Add another Path, Port, Variable, Label or Device once for each row below. Set Config Type, then the two boxes named in that row. Use Read/Write for the path and TCP for the port. Click Add.
 11. Click Apply.
 12. Open the WebUI and use Settings. That page is where Whisper, Ollama, YouTube, Facebook, and Spotify are configured. Nothing in that list is a container variable.
 
-Port:
+Port. The container listens on 80. This is not a bridge map of `8080:8080`.
 
-- Config Type Port. Name `WebUI`. Container Port `8080`. Host Port `8080`. Connection Type TCP.
+- Config Type Port. Name `WebUI`. Container Port `80`. Host Port `80`. Connection Type TCP.
 
 Path. One folder. The app creates `data/`, `media/`, `secrets/`, and `settings.json` inside it.
 

@@ -3,7 +3,7 @@
   <Name>Sermon Manager</Name>
   <Repository>ghcr.io/applehat/sermon-manager:latest</Repository>
   <Registry>https://github.com/applehat/sermon-manager/pkgs/container/sermon-manager</Registry>
-  <Network>bridge</Network>
+  <Network>br0</Network>
   <MyIP/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
@@ -11,7 +11,7 @@
   <Project>https://github.com/applehat/sermon-manager-unraid</Project>
   <Overview>Church LAN app. There is no login. Do not expose it to the internet.</Overview>
   <Category>MediaApp:Video</Category>
-  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+  <WebUI>http://[IP]:80/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/applehat/sermon-manager-unraid/main/templates/sermon-manager.xml</TemplateURL>
   <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
   <ExtraParams>--stop-timeout 600</ExtraParams>
@@ -20,6 +20,6 @@
   <DonateText/>
   <DonateLink/>
   <Requires/>
-  <Config Name="WebUI" Target="8080" Default="8080" Mode="tcp" Description="Web UI. The container listens on 8080." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="WebUI" Target="80" Default="80" Mode="tcp" Description="The container listens on 80. On br0 this is the container IP, not a bridge map." Type="Port" Display="always" Required="true" Mask="false">80</Config>
   <Config Name="Sermon Root" Target="/sermons" Default="/mnt/user/appdata/sermon-manager" Mode="rw" Description="One folder. SQLite is in data/, uploads are in media/, settings are in settings.json, and YouTube and Spotify JSON files are in secrets/." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sermon-manager</Config>
 </Container>
