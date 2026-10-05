@@ -22,8 +22,8 @@ Port:
 
 Paths:
 
-- Config Type Path. Name `App Data`. Container Path `/data`. Host Path `/mnt/user/appdata/sermon-manager`. Access Mode Read/Write. The database file is `/data/sermons.db`.
-- Config Type Path. Name `Media`. Container Path `/media`. Host Path `/mnt/user/sermon-manager`. Access Mode Read/Write.
+- Config Type Path. Name `App Data`. Container Path `/data`. Host Path `/mnt/user/appdata/sermon-manager/data`. Access Mode Read/Write. The database file is `/data/sermons.db`.
+- Config Type Path. Name `Media`. Container Path `/media`. Host Path `/mnt/user/appdata/sermon-manager/media`. Access Mode Read/Write.
 - Config Type Path. Name `Secrets`. Container Path `/secrets`. Host Path `/mnt/user/appdata/sermon-manager/secrets`. Access Mode Read/Write. YouTube and Spotify JSON files live here, and the path must stay writable.
 
 Variables. Key is the variable name. Leave a value blank when the row says empty.

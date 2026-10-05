@@ -21,8 +21,8 @@
   <DonateLink/>
   <Requires/>
   <Config Name="WebUI" Target="8080" Default="8080" Mode="tcp" Description="Web UI. The container listens on 8080." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
-  <Config Name="App Data" Target="/data" Default="/mnt/user/appdata/sermon-manager" Mode="rw" Description="SQLite database directory. The database file is /data/sermons.db." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sermon-manager</Config>
-  <Config Name="Media" Target="/media" Default="/mnt/user/sermon-manager" Mode="rw" Description="Uploads, normalized media, and backfill downloads." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/sermon-manager</Config>
+  <Config Name="App Data" Target="/data" Default="/mnt/user/appdata/sermon-manager/data" Mode="rw" Description="SQLite database directory. The database file is /data/sermons.db." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sermon-manager/data</Config>
+  <Config Name="Media" Target="/media" Default="/mnt/user/appdata/sermon-manager/media" Mode="rw" Description="Uploads, normalized media, and backfill downloads." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sermon-manager/media</Config>
   <Config Name="Secrets" Target="/secrets" Default="/mnt/user/appdata/sermon-manager/secrets" Mode="rw" Description="YouTube and Spotify JSON files. This path must stay writable." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/sermon-manager/secrets</Config>
   <Config Name="Whisper Host" Target="WHISPER_HOST" Default="" Mode="" Description="Optional. Host of whisper-asr-webservice. Empty leaves the transcript pending. Port defaults to 9000." Type="Variable" Display="always" Required="false" Mask="false"></Config>
   <Config Name="LLM Host" Target="LLM_HOST" Default="" Mode="" Description="Optional. Host of Ollama. Empty uses an extractive summary. Port defaults to 11434." Type="Variable" Display="always" Required="false" Mask="false"></Config>
