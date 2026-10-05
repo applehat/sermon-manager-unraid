@@ -15,33 +15,16 @@ This is a church LAN app. There is no login. Do not expose it to the internet.
 9. Leave Privileged off.
 10. Click Add another Path, Port, Variable, Label or Device once for each row below. Set Config Type, then the two boxes named in that row. Use Read/Write for the path and TCP for the port. Click Add.
 11. Click Apply.
+12. Open the WebUI and use Settings. That page is where Whisper, Ollama, YouTube, Facebook, and Spotify are configured. Nothing in that list is a container variable.
 
 Port:
 
 - Config Type Port. Name `WebUI`. Container Port `8080`. Host Port `8080`. Connection Type TCP.
 
-Path. One folder. The app creates `data/`, `media/`, and `secrets/` inside it.
+Path. One folder. The app creates `data/`, `media/`, `secrets/`, and `settings.json` inside it.
 
-- Config Type Path. Name `Sermon Root`. Container Path `/sermons`. Host Path `/mnt/user/appdata/sermon-manager`. Access Mode Read/Write. SQLite is `data/sermons.db`. Uploads are in `media/`. YouTube and Spotify JSON files are in `secrets/`, and that directory must stay writable.
+- Config Type Path. Name `Sermon Root`. Container Path `/sermons`. Host Path `/mnt/user/appdata/sermon-manager`. Access Mode Read/Write. SQLite is `data/sermons.db`. Uploads are in `media/`. Settings are in `settings.json`. YouTube and Spotify JSON files are in `secrets/`, and that directory must stay writable.
 
-Variables. Key is the variable name. Leave a value blank when the row says empty.
-
-- `WHISPER_HOST`: empty. Optional host of whisper-asr-webservice. Empty leaves the transcript pending. Port defaults to 9000.
-- `LLM_HOST`: empty. Optional host of Ollama. Empty uses an extractive summary. Port defaults to 11434.
-- `YOUTUBE_CLIENT_SECRETS`: `/sermons/secrets/youtube_client_secret.json`
-- `YOUTUBE_TOKEN_FILE`: `/sermons/secrets/youtube_token.json`
-- `YOUTUBE_PRIVACY_STATUS`: `public`
-- `YOUTUBE_CATEGORY_ID`: `22`
-- `YOUTUBE_PLAYLIST_ID`: empty
-- `FACEBOOK_PAGE_ID`: empty
-- `FACEBOOK_PAGE_ACCESS_TOKEN`: empty. In the add-config popup, open the advanced section and set Password Mask to Yes.
-- `FACEBOOK_GRAPH_VERSION`: `v26.0`
-- `FACEBOOK_VIDEO_HOST`: `https://graph-video.facebook.com`
-- `FACEBOOK_GRAPH_HOST`: `https://graph.facebook.com`
-- `FACEBOOK_APP_ID`: empty
-- `SPOTIFY_STORAGE_STATE`: `/sermons/secrets/spotify_state.json`
-- `SPOTIFY_SHOW_URL`: `https://creators.spotify.com/dash/home`
-- `SPOTIFY_HEADLESS`: `true`
-- `SPOTIFY_UPLOAD_TIMEOUT_MS`: `3600000`
+Do not add a variable. Do not build an image on Unraid. Do not install this from Community Apps.
 
 The Docker page shows an update when a new image is pushed to the latest tag. That update does not add a port or path. Edit the container, or remove it and add it again.
